@@ -9,7 +9,6 @@ import { ToastContainer, toast } from 'react-toastify';
 const ImageGallery = ({searchValue}) => { 
   const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
   const [page, setPage] = useState(1);
 
    useEffect(() => {
@@ -26,11 +25,9 @@ const ImageGallery = ({searchValue}) => {
 
        setImages(images);
        setPage(state => state + 1);
-       setError(null)
      }).catch(
        error => {
         toast.error(error.message);
-        setError(error)
        }
      ).finally(
       setLoading(false)
@@ -46,10 +43,8 @@ const ImageGallery = ({searchValue}) => {
       
       setImages(newImages);
       setPage((state => state + 1));
-      setError(null);
     } catch (error) {
       setImages([]);
-      setError(error)
     } finally {
       setLoading(false)
     }
